@@ -95,4 +95,21 @@ export const orderType = defineField({
       validation: (Rule) => Rule.required(),
     }),
   ],
+  preview: {
+    select: {
+      name: "customerNmae",
+      amount: "totalPrice",
+      currency: "currency",
+      orderId: "orderNumber",
+      emmail: "email",
+    },
+    prepare(select) {
+      const orderIdSnippet = `{${select.orderId.slice(0, 5)}...${select.orderId.slice(-5)}}`;
+      return {
+        title: `${select.name} - ${orderIdSnippet}`,
+        subtitle: `${select.amount} ${select.currency}, ${select.emmail}`,
+        media: BasketIcon,
+      };
+    },
+  },
 });
