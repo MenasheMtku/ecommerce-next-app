@@ -7,7 +7,7 @@ async function SearchPage({
     query: string;
   };
 }) {
-  const { query } = searchParams;
+  const { query } = await searchParams;
   return <div>SearchPage for {query}</div>;
 }
 
